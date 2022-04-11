@@ -8,7 +8,7 @@ int checkTemp(uint8_t pin)
 
 void updateClk(uint32_t *pClk, uint32_t milliSecs)
 {
-  pClk = milliSecs;
+  *pClk = milliSecs;
 }
 
 void flashOnBoardLed(uint32_t *pClk, uint32_t per, uint8_t pin,
