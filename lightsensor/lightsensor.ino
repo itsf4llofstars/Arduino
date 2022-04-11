@@ -31,13 +31,9 @@ void loop()
   }
 
   if (lightVal >= 100)
-  {
     digitalWrite(led, HIGH);
-  }
   else if (lightVal < 100)
-  {
     digitalWrite(led, LOW);
-  }
 
 #ifdef BAUD
   Serial.println(lightVal);
