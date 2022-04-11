@@ -2,6 +2,6 @@
 
 Arduino sketches of Varius Sensors<br>
 
-+ Blink sketch
++ Blink sketch (blink)
 + Digital Thermometer (thermistor)
 
