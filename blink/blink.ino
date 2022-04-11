@@ -21,6 +21,12 @@ void loop()
   // blinkMillis();
 }
 
+/*
+ * Fuction compares the millis() function count of ms since boot to the ledClk
+ * variable set in the globals section. If the difference is ledPer or more
+ * then the if statement runs, and the ledClk is reset to the current millis()
+ * value.
+ * */
 void blinkMillis()
 {
   if (millis() - ledClk >= ledPer)
