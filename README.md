@@ -1,2 +1,7 @@
 # arduino
-Arduino sketches
+
+Arduino sketches of Varius Sensors<br>
+
++ Blink sketch
++ Digital Thermometer (thermistor)
+
