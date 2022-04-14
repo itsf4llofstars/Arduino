@@ -1,7 +1,8 @@
 /*
  * Name: push-button.ino
  * Description: Example of using a momentary digital push button switch on a
- * pin that is set as an input pullup. With debounce of the push button.
+ * pin that is set as an input pullup. With debounce of the push button, and
+ * the input pin as an INPUT_PULLUP.
  * */
 
 const byte ledPin = 13;
@@ -12,15 +13,10 @@ byte buttonState = HIGH;
 byte lastButtonState = HIGH;
 
 unsigned long lastDebounceTime = 0;
-unsigned long debounceDelay = 20;
-
-unsigned long foo = millis();
-unsigned long bar = 500;
+unsigned long debounceDelay = 50;
 
 void setup()
 {
-  Serial.begin(9600);
-
   pinMode(ledPin, OUTPUT);
   pinMode(buttonPin, INPUT_PULLUP);
 
@@ -32,55 +28,20 @@ void loop()
   byte reading = digitalRead(buttonPin);
 
   if (reading != lastButtonState)
-  {
     lastDebounceTime = millis();
-    Serial.print("lDT: ");
-    Serial.println(lastDebounceTime);
-  }
 
   if (millis() - lastDebounceTime > debounceDelay)
-  {
-    Serial.print("millis() - lDT > dbD: ");
-    Serial.println(millis() - lastDebounceTime);
     if (reading != buttonState)
     {
       buttonState = reading;
-      Serial.print("bS: ");
-      Serial.println(buttonState);
 
+      // Do Something Code
       if (buttonState == LOW)
-      {
         ledState = !ledState;
-        Serial.print("lS: ");
-        Serial.println(ledState);
-      }
     }
-  }
 
   digitalWrite(ledPin, ledState);
 
   lastButtonState = reading;
-
-  // if (millis() - foo >= bar)
-  // {
-  //   printVals(reading);
-  //   foo = millis();
-  // }
 }
 
-void printVals(byte readPin)
-{
-  Serial.print("ledSta: ");
-  Serial.println(ledState);
-  Serial.print("butSta: ");
-  Serial.println(buttonState);
-  Serial.print("lButSt: ");
-  Serial.println(lastButtonState);
-  Serial.print("lDbTme: ");
-  Serial.println(lastDebounceTime);
-  Serial.print("dbDlay: ");
-  Serial.println(debounceDelay);
-  Serial.print("readin: ");
-  Serial.println(readPin);
-  Serial.println();
-}
