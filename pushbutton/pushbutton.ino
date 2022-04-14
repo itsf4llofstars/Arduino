@@ -27,8 +27,7 @@ void loop()
 {
   byte reading = digitalRead(buttonPin);
 
-  if (reading != lastButtonState)
-    lastDebounceTime = millis();
+  lastDebounceTime = (reading != lastButtonState) ? millis() : lastDebounceTime;
 
   if (millis() - lastDebounceTime > debounceDelay)
     if (reading != buttonState)
@@ -36,8 +35,7 @@ void loop()
       buttonState = reading;
 
       // Do Something Code
-      if (buttonState == LOW)
-        ledState = !ledState;
+      ledState = (buttonState == LOW) ? !ledState : ledState;
     }
 
   digitalWrite(ledPin, ledState);
