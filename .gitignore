@@ -1,5 +1,6 @@
 # Personally added
 libraries/
+sketch.*
 
 # Prerequisites
 *.d
