@@ -35,7 +35,7 @@ void loop()
       btnSt = pinVal;
 
       // Do Something after delay has been met
-      ledSt = (btnSt == LOW) ? !ledSt : ledSt;
+      ledSt = (!btnSt) ? !ledSt : ledSt;
     }
 
   digitalWrite(ledPin, ledSt);
