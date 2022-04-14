@@ -6,40 +6,40 @@
  * */
 
 const byte ledPin = 13;
-const byte buttonPin = 4;
+const byte btnPin = 4;
 
-byte ledState = LOW;
-byte buttonState = HIGH;
-byte lastButtonState = HIGH;
+byte ledSt = LOW;
+byte btnSt = HIGH;
+byte lastBtnSt = HIGH;
 
-unsigned long lastDebounceTime = 0;
-unsigned long debounceDelay = 50;
+unsigned long lastDbT = 0;
+unsigned long dbD = 50;
 
 void setup()
 {
   pinMode(ledPin, OUTPUT);
-  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(btnPin, INPUT_PULLUP);
 
-  digitalWrite(ledPin, ledState);
+  digitalWrite(ledPin, ledSt);
 }
 
 void loop()
 {
-  byte reading = digitalRead(buttonPin);
+  byte pinVal = digitalRead(btnPin);
 
-  lastDebounceTime = (reading != lastButtonState) ? millis() : lastDebounceTime;
+  lastDbT = (pinVal != lastBtnSt) ? millis() : lastDbT;
 
-  if (millis() - lastDebounceTime > debounceDelay)
-    if (reading != buttonState)
+  if (millis() - lastDbT > dbD)
+    if (pinVal != btnSt)
     {
-      buttonState = reading;
+      btnSt = pinVal;
 
-      // Do Something Code
-      ledState = (buttonState == LOW) ? !ledState : ledState;
+      // Do Something after delay has been met
+      ledSt = (btnSt == LOW) ? !ledSt : ledSt;
     }
 
-  digitalWrite(ledPin, ledState);
+  digitalWrite(ledPin, ledSt);
 
-  lastButtonState = reading;
+  lastBtnSt = pinVal;
 }
 
