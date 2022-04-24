@@ -7,3 +7,4 @@ Arduino sketches of Varius Sensors<br>
 + Light sensor
 + IRdetect
 + Pushbutton
++ Thermistor
