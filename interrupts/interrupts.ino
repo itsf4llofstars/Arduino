@@ -55,14 +55,35 @@ void loop() {
   Serial.println(flag3);
 
   if (flag2) {
-    for (byte i = 0; i < 14; ++i) {
+    flag2 = false;
+
+    for (byte i = 4; i < 14; ++i) {
       digitalWrite(i, LOW);
-      led13Clk = millis();
-      led4Clk = millis();
-      led5Clk = millis();
     }
 
-    flag2 = false;
+    led13Clk = millis();
+    led4Clk = millis();
+    led5Clk = millis();
+
+    led13Per = 1250;
+    led4Per = 2500;
+    led5Per = 5000;
+  }
+
+  if (flag3) {
+    flag3 = false;
+
+    for (byte i = 4; i < 14; ++i) {
+      digitalWrite(i, LOW);
+    }
+
+    led13Clk = millis();
+    led4Clk = millis();
+    led5Clk = millis();
+
+    led13Per = 125;
+    led4Per = 250;
+    led5Per = 500;
   }
 }
 
