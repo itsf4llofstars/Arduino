@@ -10,9 +10,9 @@ const byte interruptPin3 = 3;
 const byte ledPin4 = 4;
 const byte ledPin5 = 5;
 
-const unsigned long led13Per = 333;
-const unsigned long led4Per = 3000;
-const unsigned long led5Per = 10000;
+unsigned long led13Per = 125;
+unsigned long led4Per = 250;
+unsigned long led5Per = 500;
 
 unsigned long led13Clk = millis();
 unsigned long led4Clk = millis();
