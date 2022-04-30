@@ -34,6 +34,11 @@ void setup() {
 
   attachInterrupt(digitalPinToInterrupt(interruptPin2), stateTwo, FALLING);
   attachInterrupt(digitalPinToInterrupt(interruptPin3), stateThree, FALLING);
+
+  // Most likely not needed
+  flag2 = false;
+  flag3 = false;
+  delay(125);
 }
 
 void loop() {
