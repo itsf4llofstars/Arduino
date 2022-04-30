@@ -56,18 +56,11 @@ void loop() {
   flashLed(millis(), &led4Clk, led4Per, ledPin4);
   flashLed(millis(), &led5Clk, led5Per, ledPin5);
 
-  Serial.print(digitalRead(interruptPin2));
-  Serial.print(" ");
-  Serial.print(digitalRead(interruptPin3));
-  Serial.print(" ");
-  Serial.print(flag2);
-  Serial.print(" ");
-  Serial.println(flag3);
-
   if (flag2) {
+    printPins();
     flag2 = false;
 
-    for (byte i = 4; i < 14; ++i) {
+    for (byte i = 4; i < 6; ++i) {
       digitalWrite(i, LOW);
     }
 
@@ -78,12 +71,16 @@ void loop() {
     led13Per = 1250;
     led4Per = 2500;
     led5Per = 5000;
+
+    printPins();
+    Serial.println();
   }
 
   if (flag3) {
+    printPins();
     flag3 = false;
 
-    for (byte i = 4; i < 14; ++i) {
+    for (byte i = 4; i < 6; ++i) {
       digitalWrite(i, LOW);
     }
 
@@ -94,6 +91,9 @@ void loop() {
     led13Per = 125;
     led4Per = 250;
     led5Per = 500;
+
+    printPins();
+    Serial.println();
   }
 }
 
@@ -103,6 +103,16 @@ void stateTwo() {
 
 void stateThree() {
   flag3 = true;
+}
+
+void printPins() {
+  Serial.print(digitalRead(interruptPin2));
+  Serial.print(" ");
+  Serial.print(digitalRead(interruptPin3));
+  Serial.print(" ");
+  Serial.print(flag2);
+  Serial.print(" ");
+  Serial.println(flag3);
 }
 
 void flashLed(unsigned long mils, unsigned long *clk, unsigned long per, byte pin) {
