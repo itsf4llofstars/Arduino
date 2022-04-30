@@ -1,5 +1,12 @@
 /*
- * Example of using interrputs and theri pins
+ * This documentation is in no way ment to clear and concise
+ *
+ * Simple, non-clean, nor fancy example of using interrupts pins 2 and 3
+ * on the Arduino UNO board
+ *
+ * It's easy to see after changing the led period (interrupt pin two)
+ * to a longer period to reset (interrupt pin three) while one or more
+ * led's are on.
  **/
 
 #define BAUD 9600
@@ -10,6 +17,7 @@ const byte interruptPin3 = 3;
 const byte ledPin4 = 4;
 const byte ledPin5 = 5;
 
+// normally constant (const)
 unsigned long led13Per = 125;
 unsigned long led4Per = 250;
 unsigned long led5Per = 500;
@@ -24,7 +32,7 @@ volatile bool flag3 = false;
 void setup() {
   Serial.begin(BAUD);
 
-  for (byte i = 0; i < 14; ++i) {
+  for (byte i = 0; i < 6; ++i) {
     pinMode(i, OUTPUT);
     digitalWrite(i, LOW);
   }
