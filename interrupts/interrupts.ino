@@ -32,21 +32,46 @@ void setup() {
   pinMode(interruptPin2, INPUT_PULLUP);
   pinMode(interruptPin3, INPUT_PULLUP);
 
-  attachInterrupt(digitalPinToInterrupt(interruptPin2), interruptTwo, FALLING);
-  attachInterrupt(digitalPinToInterrupt(interruptPin3), interruptThree, FALLING);
-
-  flag2 = false;
-  flag3 = false;
+  attachInterrupt(digitalPinToInterrupt(interruptPin2), stateTwo, FALLING);
+  attachInterrupt(digitalPinToInterrupt(interruptPin3), stateThree, FALLING);
 }
 
 void loop() {
+  flashLed(millis(), &led13Clk, led13Per, ledPin);
+  flashLed(millis(), &led4Clk, led4Per, ledPin4);
+  flashLed(millis(), &led5Clk, led5Per, ledPin5);
 
+  Serial.print(digitalRead(interruptPin2));
+  Serial.print(" ");
+  Serial.print(digitalRead(interruptPin3));
+  Serial.print(" ");
+  Serial.print(flag2);
+  Serial.print(" ");
+  Serial.println(flag3);
+
+  if (flag2) {
+    for (byte i = 0; i < 14; ++i) {
+      digitalWrite(i, LOW);
+      led13Clk = millis();
+      led4Clk = millis();
+      led5Clk = millis();
+    }
+
+    flag2 = false;
+  }
 }
 
-void interruptTwo() {
+void stateTwo() {
   flag2 = true;
 }
 
-void interruptThree() {
+void stateThree() {
   flag3 = true;
+}
+
+void flashLed(unsigned long mils, unsigned long *clk, unsigned long per, byte pin) {
+  if (mils - *clk >= per) {
+    *clk = mils;
+    digitalWrite(pin, !digitalRead(pin));
+  }
 }
