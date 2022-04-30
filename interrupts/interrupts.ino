@@ -40,13 +40,15 @@ void setup() {
   pinMode(interruptPin2, INPUT_PULLUP);
   pinMode(interruptPin3, INPUT_PULLUP);
 
-  attachInterrupt(digitalPinToInterrupt(interruptPin2), stateTwo, FALLING);
-  attachInterrupt(digitalPinToInterrupt(interruptPin3), stateThree, FALLING);
+  // set to RISING for easier print viewing
+  attachInterrupt(digitalPinToInterrupt(interruptPin2), stateTwo, RISING);
+  attachInterrupt(digitalPinToInterrupt(interruptPin3), stateThree, RISING);
 
-  // Most likely not needed
+  // the resetting and delay here seems to mitigate spurious signals effecting
+  // loop() code
   flag2 = false;
   flag3 = false;
-  delay(125);
+  delay(10);
 }
 
 void loop() {
