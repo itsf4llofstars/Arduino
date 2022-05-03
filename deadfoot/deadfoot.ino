@@ -29,16 +29,13 @@ void setup() {
   digitalWrite(touchPinLed, HIGH);
 
   // Checks for the pin to got from high to low
-  do {} while (!pulseIn(pulsePin, HIGH, 1000));
+  do {} while (!pulseIn(pulsePin, HIGH, 100));
 
   digitalWrite(touchPinLed, LOW);
 }
 
 void loop() {
-  uint8_t touchPinVal = digitalRead(touchPin);
-
-  digitalWrite(touchPinLed, (touchPinVal) ? HIGH : LOW);
-
+  digitalWrite(touchPinLed, (digitalRead(touchPin)) ? HIGH : LOW);
   flashLed(millis(), &ledClk, ledPer, LED_BUILTIN);
 
 #ifdef BAUD
