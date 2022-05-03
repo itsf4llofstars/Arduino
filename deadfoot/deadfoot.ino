@@ -5,42 +5,24 @@
  * will look at the latter. This is good to prevent the loop from running
  * until
  * */
-
-// #define BAUD 9600
-
-const uint8_t touchPin = 12;
-const uint8_t touchPinLed = 11;
 const uint8_t pulsePin = 2;
 
 const uint32_t ledPer = 1000;
 uint32_t ledClk = millis();
 
 void setup() {
-#ifdef BAUD
-  Serial.begin(BAUD);
-#endif
+  Serial.begin(9600);
 
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(touchPin, INPUT_PULLUP);
-  pinMode(touchPinLed, OUTPUT);
   pinMode(pulsePin, INPUT_PULLUP);
 
-  // dead foot code
-  digitalWrite(touchPinLed, HIGH);
-
-  // Checks for the pin to got from high to low
-  do {} while (!pulseIn(pulsePin, HIGH, 100));
-
-  digitalWrite(touchPinLed, LOW);
+  do {} while (!digitalRead(pulsePin));
 }
 
 void loop() {
-  digitalWrite(touchPinLed, (digitalRead(touchPin)) ? HIGH : LOW);
   flashLed(millis(), &ledClk, ledPer, LED_BUILTIN);
 
-#ifdef BAUD
-  Serial.println(touchPinVal);
-#endif
+  Serial.println(digitalRead(pulsePin));
 }
 
 void flashLed(uint32_t mils, uint32_t *clk, uint32_t per, uint8_t pin) {
