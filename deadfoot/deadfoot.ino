@@ -28,20 +28,16 @@ void setup() {
   // dead foot code
   digitalWrite(touchPinLed, HIGH);
 
-  do {
-  } while (!pulseIn(pulsePin, HIGH, 1000));
+  // Checks for the pin to got from high to low
+  do {} while (!pulseIn(pulsePin, HIGH, 1000));
 
   digitalWrite(touchPinLed, LOW);
 }
 
 void loop() {
   uint8_t touchPinVal = digitalRead(touchPin);
-  uint8_t foo = digitalRead(pulsePin);
 
- if (touchPinVal)
-   digitalWrite(touchPinLed, HIGH);
- else if (!touchPinVal)
-   digitalWrite(touchPinLed, LOW);
+  digitalWrite(touchPinLed, (touchPinVal) ? HIGH : LOW);
 
   flashLed(millis(), &ledClk, ledPer, LED_BUILTIN);
 
