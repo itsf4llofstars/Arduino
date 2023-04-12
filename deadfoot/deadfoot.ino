@@ -1,9 +1,9 @@
 /*
  * The dead foot switch.
  * This piece of code can be used to hold your arduino at the end of the
- * setup function until to through a switch or remove a wire from a pin. We
+ * setup function until to toggles a switch or remove a wire from a pin. We
  * will look at the latter. This is good to prevent the loop from running
- * until
+ * until the user is ready
  * */
 const uint8_t pulsePin = 2;
 
